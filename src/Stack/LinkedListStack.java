@@ -24,7 +24,7 @@ public class LinkedListStack<Item>
 
     public Item pop()
     {
-        if(first == null)
+        if(isEmpty())
         {
             throw new UnsupportedOperationException ("Stack is empty");
         }
@@ -57,7 +57,7 @@ public class LinkedListStack<Item>
         stack.push("test");
         stack.pop();
         stack.push("to");
-        System.out.println(stack.size);
+        System.out.println(stack.size());
         while(!stack.isEmpty())
         {
             System.out.print(stack.pop());
