@@ -9,7 +9,7 @@ public class LinkedListStack<Item> implements Iterable<Item>
         return new ListIterator();
     }
 
-    private class Node<Item>
+    private static class Node<Item>
     {
         public Item item;
         public Node next;
