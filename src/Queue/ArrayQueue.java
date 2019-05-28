@@ -1,8 +1,9 @@
 package Queue;
 
 import java.security.InvalidParameterException;
+import java.util.Iterator;
 
-public class ArrayQueue<Item>
+public class ArrayQueue<Item> implements Iterable<Item>
 {
     private Item[] items;
     private int head;
@@ -83,6 +84,27 @@ public class ArrayQueue<Item>
         head = 0;
     }
 
+    @Override
+    public Iterator<Item> iterator() {
+        return new ArrayIterator();
+    }
+
+    private class ArrayIterator implements Iterator<Item>
+    {
+        private int current = head;
+        @Override
+        public boolean hasNext() {
+            return current != tail;
+        }
+
+        @Override
+        public Item next() {
+            Item item = items[current];
+            current = (current + 1)%items.length;
+            return item;
+        }
+    }
+
     public static void main(String[] args)
     {
         ArrayQueue<String> queue = new ArrayQueue<>();
@@ -100,5 +122,16 @@ public class ArrayQueue<Item>
             System.out.print(queue.dequeue());
             System.out.print(" ");
         }
+
+        System.out.println();
+
+        queue.enqueue("1");
+        queue.enqueue("2");
+        queue.enqueue("3");
+        for(String s: queue)
+        {
+            System.out.print(s + " ");
+        }
     }
+
 }

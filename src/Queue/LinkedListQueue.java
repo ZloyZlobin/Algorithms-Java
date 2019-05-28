@@ -1,7 +1,13 @@
 package Queue;
 
-public class LinkedListQueue<Item>
-{
+import java.util.Iterator;
+
+public class LinkedListQueue<Item> implements Iterable<Item> {
+    @Override
+    public Iterator<Item> iterator() {
+        return new ListIterator();
+    }
+
     private class Node<Item>
     {
         public Item item;
@@ -57,6 +63,23 @@ public class LinkedListQueue<Item>
         return result;
     }
 
+    private class ListIterator implements Iterator<Item>
+    {
+        private Node<Item> current = head;
+
+        @Override
+        public boolean hasNext() {
+            return current != null;
+        }
+
+        @Override
+        public Item next() {
+            Item item = current.item;
+            current = current.next;
+            return item;
+        }
+    }
+
     public static void main(String[] args)
     {
         LinkedListQueue<String> queue = new LinkedListQueue<>();
@@ -73,6 +96,16 @@ public class LinkedListQueue<Item>
         {
             System.out.print(queue.dequeue());
             System.out.print(" ");
+        }
+
+        System.out.println();
+
+        queue.enqueue("1");
+        queue.enqueue("2");
+        queue.enqueue("3");
+        for(String s: queue)
+        {
+            System.out.print(s + " ");
         }
     }
 }

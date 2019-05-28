@@ -1,8 +1,9 @@
 package Stack;
 
 import java.security.InvalidParameterException;
+import java.util.Iterator;
 
-public class ArrayStack<Item>
+public class ArrayStack<Item> implements Iterable<Item>
 {
     private Item[] items;
     private int head;
@@ -71,6 +72,26 @@ public class ArrayStack<Item>
         items = copy;
     }
 
+    @Override
+    public Iterator<Item> iterator() {
+        return new ArrayIterator();
+    }
+
+    private class ArrayIterator implements Iterator<Item>
+    {
+        private int current = head;
+
+        @Override
+        public boolean hasNext() {
+            return current > 0;
+        }
+
+        @Override
+        public Item next() {
+            return items[--current];
+        }
+    }
+
     public static void main(String[] args)
     {
         ArrayStack<String> stack = new ArrayStack<>();
@@ -87,6 +108,16 @@ public class ArrayStack<Item>
         {
             System.out.print(stack.pop());
             System.out.print(" ");
+        }
+
+        System.out.println();
+
+        stack.push("1");
+        stack.push("2");
+        stack.push("3");
+        for(String s: stack)
+        {
+            System.out.print(s + " ");
         }
     }
 }
