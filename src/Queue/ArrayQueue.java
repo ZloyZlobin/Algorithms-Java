@@ -60,8 +60,9 @@ public class ArrayQueue<Item> implements Iterable<Item>
             throw new UnsupportedOperationException("Stack is empty");
         }
 
-        Item result = items[head++];
-        head %= items.length;
+        Item result = items[head];
+        items[head] = null;
+        head = (head + 1) % items.length;
         if(!isEmpty() && size() < items.length / 4)
         {
             resize(items.length / 2);
