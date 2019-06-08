@@ -4,7 +4,7 @@ import java.util.Random;
 
 public class Selection {
 
-    public static void Sort(Comparable[] a)
+    public static void sort(Comparable[] a)
     {
         for(int i = 0; i < a.length; i++)
         {
@@ -44,7 +44,7 @@ public class Selection {
             a[i] = rnd.nextInt();
         }
 
-        Sort(a);
+        sort(a);
 
         for(int i = 1; i < length; i++)
         {
