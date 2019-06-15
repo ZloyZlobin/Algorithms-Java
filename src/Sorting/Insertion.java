@@ -3,11 +3,17 @@ package Sorting;
 import java.util.Random;
 
 public class Insertion {
-    public static void Sort(Comparable[] a)
+
+    public static void sort(Comparable[] a)
     {
-        for(int i = 0; i < a.length; i++)
+        sort(a, 0, a.length - 1);
+    }
+
+    public static void sort(Comparable[] a, int lo, int hi)
+    {
+        for(int i = lo; i <= hi; i++)
         {
-            for(int j = i; j > 0; j--)
+            for(int j = i; j > lo; j--)
             {
                 if(less(a[j], a[j - 1]))
                 {
@@ -41,7 +47,7 @@ public class Insertion {
             a[i] = rnd.nextInt();
         }
 
-        Sort(a);
+        sort(a);
 
         for(int i = 1; i < length; i++)
         {
