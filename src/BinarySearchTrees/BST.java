@@ -144,6 +144,7 @@ public class BST<Key extends Comparable<Key>, Value>
         if (x.right == null) return x.left;
         x.right = deleteMax(x.right);
         x.count = 1 + size(x.left) + size(x.right);
+        return x;
     }
 
     public void delete(Key key)
